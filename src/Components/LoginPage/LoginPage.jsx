@@ -71,7 +71,7 @@ export default function LoginPage() {
       collection(db, "Users"),
       where("uid", "==", auth.currentUser.uid)
     );
-    let querySnapshot = await getDocs(q);
+    let querySnapshot = await getDocs(q); 
     querySnapshot.forEach((doc) => {
       let Data = doc.data();
       cookie.set("currentUser", Data)

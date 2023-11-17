@@ -36,6 +36,12 @@
   transition: transform 500ms;
 }
 
+@layer utilities{
+  .home{
+    background-color: white !important
+  }
+}
+
 /* login and signup page */
 @layer components {
   .signBackground {
@@ -88,10 +94,18 @@
 
 @layer components{
   .curoselHome{
-    @apply flex flex-col-reverse my-28 container w-3/4
+    @apply flex flex-col-reverse items-center my-20 overflow-y-visible  container md:w-4/5 w-full
   }
   .slideCuroselHome{
-    @apply md:h-[18rem] h-[14rem]  bg-red-400 rounded-lg 
+    @apply md:h-[18rem] h-[14rem]   rounded-lg 
   }
+    .curoselServices {
+      @apply flex  justify-center my-24 overflow-y-visible container md:w-4/5 w-full m-auto
+    }
 }
+
+.doubleCircle:hover .doubleCircleChild{
+  opacity: 1;
+}
+
 

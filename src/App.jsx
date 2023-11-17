@@ -17,6 +17,7 @@ import { ToastContainer } from "react-toastify";
 import ProtectRouter from "./Components/Layout/ProtectRouter";
 import Profile from "./Components/Profile/Profile";
 import Likes from "./Components/Likes/Likes";
+import AdminstratorLayout from "./Components/Layout/AdminstratorLayout";
 function App() {
   let router = createBrowserRouter([
     {
@@ -82,16 +83,16 @@ function App() {
         {
           path: "wishlist",
           element: (
-            <ProtectRouter>
+
               <Likes />
-            </ProtectRouter>
+
           ),
         },
       ],
     },
     {
       path: "adminstrator",
-      element: <ProtectRouter></ProtectRouter>,
+      element: <ProtectRouter><AdminstratorLayout/></ProtectRouter>,
       children: [
         {
           index: true,
