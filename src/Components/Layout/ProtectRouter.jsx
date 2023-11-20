@@ -1,6 +1,7 @@
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import AdminstratorLayout from "./AdminstratorLayout";
 import Cookies from "universal-cookie";
+
 export default function ProtectRouter({ children }) {
   let location = useLocation();
   let cookie = new Cookies();
@@ -10,11 +11,12 @@ export default function ProtectRouter({ children }) {
     currentUser.role == "customer" &&
     (location.pathname.includes("cart") ||
       location.pathname.includes("profile") ||
-      location.pathname.includes("wishlist") ||
       location.pathname === "/" ||
       location.pathname.includes("shop") ||
       location.pathname.includes("about") ||
       location.pathname.includes("blog") ||
+      location.pathname.includes("productdetails") ||
+      location.pathname.includes("blogdetails") ||
       location.pathname.includes("contact"))
   ) {
     return children;
@@ -40,10 +42,11 @@ export default function ProtectRouter({ children }) {
       location.pathname.includes("shop") ||
       location.pathname.includes("about") ||
       location.pathname.includes("blog") ||
+      location.pathname.includes("productdetails") ||
+      location.pathname.includes("blogdetails") ||
       location.pathname.includes("contact") ||
       location.pathname.includes("cart") ||
       location.pathname.includes("profile") ||
-      location.pathname.includes("wishlist") ||
       location.pathname.includes("login") ||
       location.pathname.includes("signup") ||
       location.pathname.includes("forget-password"))
@@ -56,12 +59,14 @@ export default function ProtectRouter({ children }) {
       location.pathname.includes("forget-password") ||
       location.pathname === "/" ||
       location.pathname.includes("shop") ||
+      location.pathname.includes("productdetails") ||
+      location.pathname.includes("blogdetails") ||
       location.pathname.includes("about") ||
       location.pathname.includes("blog") ||
       location.pathname.includes("contact"))
   ) {
     return children;
   } else {
-    return <Navigate to="/login" state={{path:location.pathname}}/>;
+    return <Navigate to="/login" state={{ path: location.pathname }} />;
   }
 }

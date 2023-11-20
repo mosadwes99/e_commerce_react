@@ -7,6 +7,10 @@ import Cookies from "universal-cookie";
 import { CSSTransition } from "react-transition-group";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { getHref } from "../../Redux/hrefSlice.js";
+
+
 
 export default function LoginPage() {
   let location = useLocation()
@@ -14,6 +18,7 @@ export default function LoginPage() {
   let cookie = new Cookies();
   let transitonRef = useRef(null);
   let path = location.state?.path || "/"
+    let dispatch = useDispatch();
 
   let [isLoading, setIsLoading] = useState(false);
 
@@ -149,7 +154,7 @@ export default function LoginPage() {
               className="bg-white p-[56px] rounded-2xl w-full md:pt-30  md:w-[430px] h-screen md:h-auto md:block flex flex-col justify-center "
             >
               <div className="w-full flex justify-center mb-0">
-                <Link to="/">
+                <Link to="/" onClick={()=>dispatch(getHref('/'))}>
                   <img src={logo} width="100px" />
                 </Link>
               </div>

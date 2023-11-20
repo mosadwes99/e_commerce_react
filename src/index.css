@@ -99,13 +99,16 @@
   .slideCuroselHome{
     @apply md:h-[18rem] h-[14rem]   rounded-lg 
   }
-    .curoselServices {
-      @apply flex  justify-center my-24 overflow-y-visible container md:w-4/5 w-full m-auto
-    }
+  .curoselServices {
+    @apply flex  justify-center my-24 overflow-y-visible container md:w-4/5 w-full m-auto
+  }
+  .curoselProduct{
+    @apply flex flex-col-reverse items-center py-20 overflow-y-visible  container md:w-4/5 w-[90%]
+  }
+
 }
 
 .doubleCircle:hover .doubleCircleChild{
   opacity: 1;
 }
-
 

@@ -2,22 +2,27 @@ import "./App.css";
 import Layout from "./Components/Layout/Layout";
 import LoginPage from "./Components/LoginPage/LoginPage";
 import SignupPage from "./Components/SignupPage/SignupPage";
-import Dashboard from "./Components/Dashboard/Dashboard";
+import Dashboard from "./Components/Admin/Dashboard/Dashboard";
 import ForgetPassword from "./Components/ForgetPassword/ForgetPassword";
-import Home from "./Components/Home/Home";
-import Shop from "./Components/Shop/Shop";
-import About from "./Components/About/About";
-import Contact from "./Components/Contact/Contact";
-import Blog from "./Components/Blog/Blog";
-import Cart from "./Components/Cart/Cart";
-import Products from "./Components/Products/Products";
-import Orders from "./Components/Orders/Orders";
+import Home from "./Components/User/Home/Home";
+import Shop from "./Components/User/Shop/Shop";
+import About from "./Components/User/About/About";
+import Contact from "./Components/User/Contact/Contact";
+import Blog from "./Components/User/Blog/Blog";
+import Cart from "./Components/User/Cart/Cart";
+import Products from "./Components/Admin/Products/Products";
+import Orders from "./Components/Admin/Orders/Orders";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import ProtectRouter from "./Components/Layout/ProtectRouter";
-import Profile from "./Components/Profile/Profile";
-import Likes from "./Components/Likes/Likes";
+import Profile from "./Components/UserProfile/Profile/Profile";
+import Likes from "./Components/UserProfile/Likes/Likes";
 import AdminstratorLayout from "./Components/Layout/AdminstratorLayout";
+import ProductDetails from "./Components/User/Shop/ProductDetails";
+import BlogDetails from "./Components/User/Blog/BlogDetails";
+import UserProfile from "./Components/Layout/UserProfile";
+import UserOrder from "./Components/UserProfile/UserOrder/UserOrder.jsx"
+import Address from "./Components/UserProfile/Address/Address.jsx"
 function App() {
   let router = createBrowserRouter([
     {
@@ -76,23 +81,46 @@ function App() {
           path: "cart",
           element: <Cart />,
         },
+
         {
-          path: "profile",
-          element: <Profile />,
+          path: "productdetails/:uid",
+          element: <ProductDetails />,
         },
         {
-          path: "wishlist",
-          element: (
-
-              <Likes />
-
-          ),
+          path: "blogdetails/:uid",
+          element: <BlogDetails />,
+        },
+        {
+          path: "profile",
+          element: <UserProfile />,
+          children: [
+            {
+              index: true,
+              element: <Profile />,
+            },
+            {
+              path: "wishlist",
+              element: <Likes />,
+            },
+            {
+              path: "orders",
+              element: <UserOrder/>,
+            },
+            {
+              path: "adress",
+              element: <Address />,
+            },
+          ],
         },
       ],
     },
     {
       path: "adminstrator",
-      element: <ProtectRouter><AdminstratorLayout/></ProtectRouter>,
+      element: (
+        <ProtectRouter>
+          <AdminstratorLayout />
+        </ProtectRouter>
+      ),
       children: [
         {
           index: true,

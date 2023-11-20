@@ -7,17 +7,21 @@ import { auth, db } from "../../Firebase/FireStore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { getHref } from "../../Redux/hrefSlice.js";
 
 export default function SignupPage() {
   let navigate = useNavigate();
   let cookie = new Cookies();
   let transitonRef = useRef(null);
+  let dispatch = useDispatch();
 
   let [isLoading, setIsLoading] = useState(false);
 
   let [errorMessage, setErrorMessage] = useState("");
 
   let [transition, setTransition] = useState(false);
+  let [isTrue , setIsTrue] = useState(false)
 
   let [getData, setGetData] = useState({
     userName: "",
@@ -107,6 +111,7 @@ export default function SignupPage() {
   }
 
   let dataRquired = (e) => {
+    setIsTrue(true)
     for (let i = 0; i < 4; i++) {
       let error = dataError;
       if (error[e.target[i].name] == null) {
@@ -175,7 +180,7 @@ export default function SignupPage() {
               className="bg-white p-[56px] rounded-2xl w-full md:pt-30  md:w-[430px] h-screen md:h-auto md:block flex flex-col justify-center "
             >
               <div className="w-full flex justify-center mb-0">
-                <Link to="/">
+                <Link to="/" onClick={() => dispatch(getHref("/"))}>
                   <img src={logo} width="100px" />
                 </Link>
               </div>

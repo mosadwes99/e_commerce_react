@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { toast } from "react-toastify";
-import layoutbg from "../../imgs/Assets/layoutbg.webp";
 import arrow from "../../icons/top-arrow-5-svgrepo-com.svg";
-import Nav from "../Nav/nav.jsx";
-import Footer from "../Footer/Footer.jsx";
+import Nav from "../User/Nav/nav.jsx";
+import Footer from "../User/Footer/Footer.jsx";
 
 export default function Layout() {
   let [scroll, setScroll] = useState(0);
@@ -23,12 +21,15 @@ export default function Layout() {
   window.addEventListener("scroll", getScroll);
   return (
     <>
-      <div className=" bg-[url('/src/imgs/Assets/layoutbg.webp')] bg-no-repeat bg-fixed bg-cover relative">
+      <div className="  bg-[url('/src/imgs/Assets/layoutbg.webp')] bg-no-repeat bg-fixed bg-cover relative">
         <div className="bg-white">
           <Nav scroll={scroll} />
-          <Outlet></Outlet>
+
+          <Outlet></Outlet>         
         </div>
+
         <Footer />
+        
         {scroll > 500 ? (
           <div
             onClick={getTop}

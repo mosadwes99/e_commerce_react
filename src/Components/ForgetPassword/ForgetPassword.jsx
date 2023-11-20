@@ -5,12 +5,15 @@ import logo from "../../imgs/Log/logo.webp";
 import { auth } from "../../Firebase/FireStore";
 import { toast } from "react-toastify";
 import { sendPasswordResetEmail } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { getHref } from "../../Redux/hrefSlice";
 
 export default function ForgetPassword() {
   let transitonRef = useRef(null);
   let [transition, setTransition] = useState(false);
   let [isLoading, setIsLoading] = useState(false);
   let [getData, setGetData] = useState("");
+  let dispatch = useDispatch()
 
   let navigate = useNavigate()
   
@@ -74,7 +77,7 @@ export default function ForgetPassword() {
               className="bg-white p-[56px] rounded-2xl w-full md:pt-30  md:w-[460px] h-screen md:h-auto md:block flex flex-col justify-center"
             >
               <div className="w-full flex justify-center mb-0">
-                <Link to="/">
+                <Link to="/" onClick={() => dispatch(getHref("/"))}>
                   <img src={logo} width="100px" />
                 </Link>
               </div>
